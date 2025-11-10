@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Eight Queens - HTML Only</title>
     <style>
       body {
@@ -35,31 +36,41 @@
       <table>
         <tbody>
         <tr>
-          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
         <tr>
-          <td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
         </tr>
         <tr>
-          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td><td class="black"></td>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
         <tr>
-          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black">♛</td><td class="white"></td>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
         </tr>
         <tr>
-          <td class="white"></td><td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
         <tr>
-          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
         </tr>
         <tr>
-          <td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
         <tr>
-          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
         </tr>
       </tbody>
       </table>
     </div>
+    <script>
+      // Place a queen (♛) in a cell when clicked, only if empty
+      document.querySelectorAll('td').forEach(function(cell) {
+        cell.addEventListener('click', function() {
+          if (cell.textContent === '') {
+            cell.textContent = '♛';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
