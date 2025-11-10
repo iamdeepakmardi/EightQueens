@@ -3,6 +3,12 @@
   <head>
     <title>Eight Queens - HTML Only</title>
     <style>
+      body {
+        display: block;
+        margin: 0;
+        padding-top: 0;
+        box-sizing: border-box;
+      }
       table {
         border-collapse: collapse;
         margin: 20px 0;
@@ -24,9 +30,10 @@
     </style>
   </head>
   <body>
-    <h1>Eight Queens Problem</h1>
-    <table>
-      <tbody>
+    <h1 style="text-align:center;">Eight Queens Problem</h1>
+    <div style="display: flex; justify-content: center;">
+      <table>
+        <tbody>
         <tr>
           <td class="white"></td><td class="black"></td><td class="white"></td><td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
@@ -52,6 +59,7 @@
           <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td>
         </tr>
       </tbody>
-    </table>
+      </table>
+    </div>
   </body>
 </html>
