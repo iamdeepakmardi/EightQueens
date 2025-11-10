@@ -1,13 +1,57 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Eight Queens - HTML Only</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      td {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #333;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 32px;
+      }
+      .white {
+        background: #f0d9b5;
+      }
+      .black {
+        background: #b58863;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <h1>Eight Queens Problem</h1>
+    <table>
+      <tbody>
+        <tr>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+        </tr>
+        <tr>
+          <td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
+        </tr>
+        <tr>
+          <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td><td class="black"></td>
+        </tr>
+        <tr>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black">♛</td><td class="white"></td>
+        </tr>
+        <tr>
+          <td class="white"></td><td class="black">♛</td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+        </tr>
+        <tr>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td>
+        </tr>
+        <tr>
+          <td class="white"></td><td class="black"></td><td class="white">♛</td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
+        </tr>
+        <tr>
+          <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white">♛</td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
