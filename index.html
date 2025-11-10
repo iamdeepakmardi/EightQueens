@@ -62,15 +62,80 @@
       </tbody>
       </table>
     </div>
+    <div style="text-align:center;">
+      <button id="resetBtn" style="margin-bottom:20px;">Reset Board</button>
+    </div>
     <script>
-      // Place a queen (♛) in a cell when clicked, only if empty
-      document.querySelectorAll('td').forEach(function(cell) {
-        cell.addEventListener('click', function() {
-          if (cell.textContent === '') {
-            cell.textContent = '♛';
-          }
+      // To get the board state
+      function getBoard() {
+        const board = [];
+        document.querySelectorAll('tbody tr').forEach((row, i) => {
+          board[i] = [];
+          row.querySelectorAll('td').forEach((cell, j) => {
+            board[i][j] = cell.textContent === '♛' ? 1 : 0;
+          });
         });
-      });
+        return board;
+      }
+
+      // Check if placing a queen at (row, col) is safe
+      function isSafe(board, row, col) {
+        for (let i = 0; i < 8; i++) {
+          if (board[row][i] === 1 || board[i][col] === 1) return false;
+        }
+        for (let i = -8; i < 8; i++) {
+          if (row + i >= 0 && row + i < 8 && col + i >= 0 && col + i < 8 && board[row + i][col + i] === 1) return false;
+          if (row + i >= 0 && row + i < 8 && col - i >= 0 && col - i < 8 && board[row + i][col - i] === 1) return false;
+        }
+        return true;
+      }
+
+      // Place a queen if valid, else show alert and disable board
+      function handleCellClick(e) {
+        const cell = e.target;
+        if (cell.textContent !== '') return;
+        const row = cell.parentElement.rowIndex;
+        const col = cell.cellIndex;
+        const board = getBoard();
+        if (isSafe(board, row, col)) {
+          cell.textContent = '♛';
+          // Check if 8 queens placed
+          if (document.querySelectorAll('td').length &&
+              Array.from(document.querySelectorAll('td')).filter(td => td.textContent === '♛').length === 8) {
+            setTimeout(() => alert('Congratulations! 8 Queens placed.'), 10);
+          }
+        } else {
+          cell.style.background = '#ffcccc';
+          setTimeout(() => {
+            cell.style.background = cell.classList.contains('white') ? '#f0d9b5' : '#b58863';
+          }, 800);
+          disableBoard();
+          setTimeout(() => alert('Invalid move! Reset to try again.'), 10);
+        }
+      }
+
+      function disableBoard() {
+        document.querySelectorAll('td').forEach(td => {
+          td.removeEventListener('click', handleCellClick);
+        });
+      }
+
+      function enableBoard() {
+        document.querySelectorAll('td').forEach(td => {
+          td.addEventListener('click', handleCellClick);
+        });
+      }
+
+      function resetBoard() {
+        document.querySelectorAll('td').forEach(td => {
+          td.textContent = '';
+          td.style.background = td.classList.contains('white') ? '#f0d9b5' : '#b58863';
+        });
+        enableBoard();
+      }
+
+      enableBoard();
+      document.getElementById('resetBtn').addEventListener('click', resetBoard);
     </script>
   </body>
 </html>
