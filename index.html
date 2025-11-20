@@ -2,40 +2,85 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Eight Queens - HTML Only</title>
     <style>
+      :root {
+        --cell-size: min(64px, calc(90vw / 8));
+        --border-color: #333;
+        --white-square: #f0d9b5;
+        --black-square: #b58863;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { height: 100%; }
       body {
-        display: block;
         margin: 0;
-        padding-top: 0;
-        box-sizing: border-box;
         font-family: 'Roboto Mono', 'Roboto', 'Courier New', Courier, monospace;
+        color: #111;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
       }
-      table {
-        border-collapse: collapse;
-        margin: 20px 0;
+
+      .main {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
       }
+
+      h1.title { text-align: center; margin: 8px 0 4px; font-size: clamp(1.2rem, 2.4vw, 1.8rem); }
+
+      .board-wrapper { display: flex; justify-content: center; width: 100%; }
+      .board { width: fit-content; max-width: min(600px, 90vw); }
+
+      table { border-collapse: collapse; margin: 8px 0; }
       td {
-        width: 40px;
-        height: 40px;
-        border: 1px solid #333;
+        width: var(--cell-size);
+        height: var(--cell-size);
+        border: 1px solid var(--border-color);
         text-align: center;
         vertical-align: middle;
-        font-size: 32px;
+        font-size: calc(var(--cell-size) * 0.6);
+        line-height: 1;
+        user-select: none;
       }
-      .white {
-        background: #f0d9b5;
+      .white { background: var(--white-square); }
+      .black { background: var(--black-square); }
+
+      .controls { text-align: center; }
+      .btn { padding: 10px 14px; font-size: 1rem; cursor: pointer; }
+
+      .info {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+        color: #444;
+        background: #fffbe7;
+        padding: 12px 16px;
+        box-sizing: border-box;
       }
-      .black {
-        background: #b58863;
+
+      @media (min-width: 700px) {
+        .info { position: fixed; left: 0; right: 0; bottom: 0; }
+      }
+
+      @media (max-width: 360px) {
+        :root { --cell-size: min(48px, calc(90vw / 8)); }
+        .info { font-size: 0.9rem; padding: 10px 8px; }
       }
     </style>
   </head>
   <body>
-    <h1 style="text-align:center;">Eight Queens Problem</h1>
-    <div style="display: flex; justify-content: center;">
-      <table>
-        <tbody>
+    <main class="main">
+      <h1 class="title">Eight Queens Problem</h1>
+      <div class="board-wrapper">
+        <div class="board">
+          <table>
+            <tbody>
         <tr>
           <td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td>
         </tr>
@@ -60,13 +105,15 @@
         <tr>
           <td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td><td class="black"></td><td class="white"></td>
         </tr>
-      </tbody>
-      </table>
-    </div>
-    <div style="text-align:center;">
-      <button id="resetBtn" style="margin-bottom:20px;">Reset Board</button>
-    </div>
-    <p style="text-align:center; max-width: 600px; margin: 0; color: #444; font-family: 'Roboto Mono', 'Roboto', 'Courier New', Courier, monospace; position: fixed; left: 0; right: 0; bottom: 0; background: #fffbe7; padding: 16px 0 8px 0; z-index: 10;">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="resetBtn" class="btn">Reset Board</button>
+      </div>
+    </main>
+    <p class="info">
       The Eight Queens puzzle is a classic chess problem that challenges you to place eight queens on a chessboard so that no two queens threaten each other. Try your hand at this elegant logic challenge!
     </p>
     <script>
